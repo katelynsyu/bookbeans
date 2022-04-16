@@ -127,6 +127,7 @@ function BookInfoScreen() {
               >
               <Text
                 style={{
+                  fontFamily: "OpenSans_400Regular",
                   color: condition === choice ?  'black' : 'grey'
                 }}
               >

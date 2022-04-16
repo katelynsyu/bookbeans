@@ -18,27 +18,14 @@ import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
 const Stack = createStackNavigator();
 
 export default function App() {
+
   let [ fontsLoaded ] = useFonts({
     Poppins_400Regular,
     OpenSans_400Regular
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
-  console.log("testing")
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
-
-
-  // if (loading) {	
-  //   return (	
-  //     <View style={styles.container}>
-  //       <Text>loading</Text>  
-  //     </View>
-  //   );
-  // }
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
@@ -60,6 +47,11 @@ export default function App() {
       }
     });
   }, []);
+
+  if (!fontsLoaded && loading) {
+    console.log("return app loading");
+    return <AppLoading />;
+  }
   
   return (
     <NavigationContainer>
