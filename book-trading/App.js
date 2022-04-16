@@ -5,6 +5,7 @@ import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View, StyleSheet
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen } from './src/screens'
+import { firebase } from './src/firebase/config'
 import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -12,58 +13,63 @@ if (!global.atob) { global.atob = decode }
 const Stack = createStackNavigator();
 
 export default function App() {
-
-  // const [loading, setLoading] = useState(true)
-  // const [user, setUser] = useState(null)
+  console.log("testing")
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
 
   // if (loading) {	
   //   return (	
-  //     <Text>SDF</Text>
+  //     <View style={styles.container}>
+  //       <Text>loading</Text>  
+  //     </View>
   //   );
   // }
 
-  // useEffect(() => {
-  //   const usersRef = firebase.firestore().collection('users');
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       usersRef
-  //         .doc(user.uid)
-  //         .get()
-  //         .then((document) => {
-  //           const userData = document.data()
-  //           setLoading(false)
-  //           setUser(userData)
-  //         })
-  //         .catch((error) => {
-  //           setLoading(false)
-  //         });
-  //     } else {
-  //       setLoading(false)
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    console.log("helo1")
+    const usersRef = firebase.firestore().collection('users');
+    console.log("helo2")
+    firebase.auth().onAuthStateChanged(user => {
+      console.log("helo3")
+      if (user) {
+        console.log('helo3.5')
+        usersRef
+          .doc(user.uid)
+          .get()
+          .then((document) => {
+            const userData = document.data()
+            setLoading(false)
+            setUser(userData)
+          })
+          .catch((error) => {
+            setLoading(false)
+          });
+      } else {
+        setLoading(false)
+      }
+      console.log("helo4")
+    });
+  }, []);
   
-  // return (
-  //   <NavigationContainer>
-  //     <Stack.Navigator>
-  //       { user ? (
-  //         <Stack.Screen name="Home">
-  //           {props => <HomeScreen {...props} extraData={user} />}
-  //         </Stack.Screen>
-  //       ) : (
-  //         <>
-  //           <Stack.Screen name="Login" component={LoginScreen} />
-  //           <Stack.Screen name="Registration" component={RegistrationScreen} />
-  //         </>
-  //       )}
-  //     </Stack.Navigator>
-  //   </NavigationContainer>
-  // );
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        { user ? (
+          <>
+            <Stack.Screen name="Home">
+              {props => <HomeScreen {...props} extraData={user} />}
+            </Stack.Screen>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Registration" component={RegistrationScreen} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Registration" component={RegistrationScreen} />
+          </> 
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
