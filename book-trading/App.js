@@ -9,9 +9,22 @@ import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
+import AppLoading from 'expo-app-loading';
+import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
+import { OpenSans_400Regular } from '@expo-google-fonts/open-sans';
+
+import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
 const Stack = createStackNavigator();
 
 export default function App() {
+  let [ fontsLoaded ] = useFonts({
+    Poppins_400Regular,
+    OpenSans_400Regular
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   // const [loading, setLoading] = useState(true)
   // const [user, setUser] = useState(null)
@@ -60,9 +73,10 @@ export default function App() {
   //   </NavigationContainer>
   // );
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View>
+      {/* <Text>Open up App.js to start working on your app!</Text> */}
       <StatusBar style="auto" />
+      <AddBookScreen />
     </View>
   );
 }
