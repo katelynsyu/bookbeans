@@ -10,12 +10,27 @@ import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
+import AppLoading from 'expo-app-loading';
+import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
+import { OpenSans_400Regular } from '@expo-google-fonts/open-sans';
+
+import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
 const Stack = createStackNavigator();
 
 export default function App() {
+  let [ fontsLoaded ] = useFonts({
+    Poppins_400Regular,
+    OpenSans_400Regular
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   console.log("testing")
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
+
 
   // if (loading) {	
   //   return (	
@@ -26,13 +41,9 @@ export default function App() {
   // }
 
   useEffect(() => {
-    console.log("helo1")
     const usersRef = firebase.firestore().collection('users');
-    console.log("helo2")
     firebase.auth().onAuthStateChanged(user => {
-      console.log("helo3")
       if (user) {
-        console.log('helo3.5')
         usersRef
           .doc(user.uid)
           .get()
@@ -47,7 +58,6 @@ export default function App() {
       } else {
         setLoading(false)
       }
-      console.log("helo4")
     });
   }, []);
   
