@@ -43,6 +43,7 @@ const books = [
 
 function MyBooksScreen({navigation, userData, ...props}) {
   let [ listings, setListings ] = useState([])
+  let [ toggleRefresh, setToggleRefresh ] = useState(false)
   
   useEffect(async () => {
     const db = firebase.firestore()
@@ -52,7 +53,7 @@ function MyBooksScreen({navigation, userData, ...props}) {
       tempListings.push(doc.data());
     });
     setListings(tempListings);
-  }, []);
+  }, [toggleRefresh]);
   return (
     <ScreenContainer>
       <View
@@ -63,7 +64,7 @@ function MyBooksScreen({navigation, userData, ...props}) {
       >
         <ScreenTitle>My Books</ScreenTitle>
         <TouchableOpacity
-          onPress={() => {navigation.navigate('AddBook')}}
+          onPress={() => {navigation.navigate('AddBook', {callback: () => setToggleRefresh(!toggleRefresh)})}}
         >
           <Feather name="plus" size={32} color="black" />
         </TouchableOpacity>
@@ -95,6 +96,7 @@ function MyBooksScreen({navigation, userData, ...props}) {
             lid={item.lid}
             uid={item.uid}
             bid={item.bid}
+            callback={() => setToggleRefresh(!toggleRefresh)}
           />}
         />        
       }

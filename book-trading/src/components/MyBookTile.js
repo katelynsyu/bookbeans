@@ -26,7 +26,7 @@ function MyBookTile (props){
         bookDocRef.update({
             listings: firebase.firestore.FieldValue.arrayRemove(lid)
         })
-
+        props.callback();
     }
     return (
         <View style={styles.bookTileContainer}> 

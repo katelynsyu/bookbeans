@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 });
 
 function BookInfoScreen({ navigation, userData, ...props }) {
+  console.log(props);
   const [ titleText, setTitleText ] = useState('');
   const [ authorText, setAuthorText ] = useState('');
   const [ condition, setCondition ] = useState('');
@@ -108,6 +109,7 @@ function BookInfoScreen({ navigation, userData, ...props }) {
         listings: firebase.firestore.FieldValue.arrayUnion(lid)
       })
     }
+    props.route.params.callback();
     navigation.goBack()
   }
 
