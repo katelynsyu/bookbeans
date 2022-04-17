@@ -92,6 +92,9 @@ function MyBooksScreen({navigation, userData, ...props}) {
             title={item.bname}
             author={item.author}
             condition={item.condition}
+            lid={item.lid}
+            uid={item.uid}
+            bid={item.bid}
           />}
         />        
       }
