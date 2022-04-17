@@ -23,7 +23,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        width: "100%"
+        width: "100%",
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     profilePicture: {
         width: 100,
