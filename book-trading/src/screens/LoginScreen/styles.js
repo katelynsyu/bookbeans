@@ -18,17 +18,19 @@ export default StyleSheet.create({
     },
     input: {
         height: 48,
-        borderRadius: 5,
+        borderRadius: 10,
         overflow: 'hidden',
         backgroundColor: 'white',
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 30,
         marginRight: 30,
-        paddingLeft: 16
+        paddingLeft: 16,
+        fontFamily: "OpenSans_400Regular",
+        fontSize: 18
     },
     button: {
-        backgroundColor: '#788eec',
+        backgroundColor: '#84CAE7',
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,
@@ -39,8 +41,9 @@ export default StyleSheet.create({
     },
     buttonTitle: {
         color: 'white',
-        fontSize: 16,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontFamily: "OpenSans_700Bold",
+        fontSize: 18
     },
     footerView: {
         flex: 1,
@@ -49,11 +52,14 @@ export default StyleSheet.create({
     },
     footerText: {
         fontSize: 16,
-        color: '#2e2e2d'
+        color: '#2e2e2d',
+        fontFamily: "OpenSans_400Regular",
+        fontSize: 16
     },
     footerLink: {
-        color: "#788eec",
+        color: "#84CAE7",
         fontWeight: "bold",
+        fontFamily: "OpenSans_700Bold",
         fontSize: 16
     }
 })

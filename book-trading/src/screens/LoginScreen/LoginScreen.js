@@ -47,7 +47,9 @@ export default function LoginScreen({navigation}) {
                 <Text style={styles.title}>Login</Text>
                 <KeyboardAwareScrollView
                     style={{ flex: 1, width: '100%' }}
-                    keyboardShouldPersistTaps="never">
+                    keyboardShouldPersistTaps="never"
+                    showsVerticalScrollIndicator={false}>
+                        
                     <Image
                         style={{
                             width: 150,
