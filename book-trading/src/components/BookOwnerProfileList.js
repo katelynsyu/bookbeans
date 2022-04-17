@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import BookOwnerProfile from "./BookOwnerProfile.js"
 import { Text, View, FlatList } from "react-native";
 import { firebase } from '../firebase/config'
-import MyBookTile from './MyBookTile'
 // import ItemDivider from '../../components/ItemDivider';
 
 function BookOwnerProfileList({ listings }) {
@@ -46,8 +45,9 @@ function BookOwnerProfileList({ listings }) {
                 data={profiles}
                 keyExtractor={item => item.lid}
                 // ItemSeparatorComponent={ItemDivider}
-                renderItem={({item}) => <MyBookTile 
-                    title={item.username}
+                renderItem={({item, index}) => <BookOwnerProfile 
+                    profilePicturePath={index%2 == 0 ? require("../../assets/blue-bean.png") : require("../../assets/yellow-bean.png")}
+                    username={item.username}
                     condition={item.condition}
                 />}
             />
