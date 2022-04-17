@@ -52,7 +52,8 @@ export default function RegistrationScreen({navigation}) {
                 <Text style={styles.title}>Sign up</Text>
                 <KeyboardAwareScrollView
                     style={{ flex: 1, width: '100%' }}
-                    keyboardShouldPersistTaps="always">
+                    keyboardShouldPersistTaps="never"
+                    showsVerticalScrollIndicator={false}>
                     <Image
                         style={{
                             width: 120,

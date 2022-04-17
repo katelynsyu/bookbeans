@@ -115,7 +115,7 @@ function BookInfoScreen({ navigation, userData, ...props }) {
 
   return (
     <ScreenContainer>
-      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+      <KeyboardAwareScrollView keyboardShouldPersistTaps="never" showsVerticalScrollIndicator={false}>
       <View
         style={{
           flexDirection: "row",
