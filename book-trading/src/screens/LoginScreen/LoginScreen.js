@@ -5,7 +5,6 @@ import styles from './styles';
 import { firebase } from '../../firebase/config'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
 export default function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
