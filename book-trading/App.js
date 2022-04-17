@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen } from './src/screens'
@@ -12,16 +12,39 @@ if (!global.atob) { global.atob = decode }
 
 import AppLoading from 'expo-app-loading';
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
-import { OpenSans_400Regular } from '@expo-google-fonts/open-sans';
+import { OpenSans_300Light,
+  OpenSans_400Regular,
+  OpenSans_500Medium,
+  OpenSans_600SemiBold,
+  OpenSans_700Bold,
+  OpenSans_800ExtraBold,
+  OpenSans_300Light_Italic,
+  OpenSans_400Regular_Italic,
+  OpenSans_500Medium_Italic,
+  OpenSans_600SemiBold_Italic,
+  OpenSans_700Bold_Italic,
+  OpenSans_800ExtraBold_Italic, } from '@expo-google-fonts/open-sans';
 
-import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
+import BookSearchScreen from './src/screens/BookSearchScreen/BookSearchScreen.js';
 const Stack = createStackNavigator();
 
 export default function App() {
 
   let [ fontsLoaded ] = useFonts({
     Poppins_400Regular,
-    OpenSans_400Regular
+    // all open sans imports
+    OpenSans_300Light,
+    OpenSans_400Regular,
+    OpenSans_500Medium,
+    OpenSans_600SemiBold,
+    OpenSans_700Bold,
+    OpenSans_800ExtraBold,
+    OpenSans_300Light_Italic,
+    OpenSans_400Regular_Italic,
+    OpenSans_500Medium_Italic,
+    OpenSans_600SemiBold_Italic,
+    OpenSans_700Bold_Italic,
+    OpenSans_800ExtraBold_Italic
   });
 
   const [user, setUser] = useState(null);
@@ -48,7 +71,7 @@ export default function App() {
     });
   }, []);
 
-  if (!fontsLoaded && loading) {
+  if (!fontsLoaded || loading) {
     console.log("return app loading");
     return <AppLoading />;
   }
