@@ -4,6 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { LoginScreen, HomeScreen, RegistrationScreen } from './src/screens'
 import { firebase } from './src/firebase/config'
 import {decode, encode} from 'base-64'
@@ -26,7 +28,57 @@ import { OpenSans_300Light,
   OpenSans_800ExtraBold_Italic, } from '@expo-google-fonts/open-sans';
 
 import BookSearchScreen from './src/screens/BookSearchScreen/BookSearchScreen.js';
+import BookInfoScreen from './src/screens/BookInfoScreen/BookInfoScreen';
+import BooksOwnedScreen from './src/screens/BooksOwnedScreen/BooksOwnedScreen';
+import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
+import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 const Stack = createStackNavigator();
+
+const Tab = createBottomTabNavigator();
+
+const SearchStack = createStackNavigator();
+const BookStack = createStackNavigator();
+
+function MySearchStack({ userData }) {
+  return (
+    <BookStack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="BookBrowse">
+        {props => <BookSearchScreen {...props} userData={userData} />}
+      </Stack.Screen>
+      <Stack.Screen name="BookInfo">
+        {props => <BookInfoScreen {...props} userData={userData} />}
+      </Stack.Screen>
+    </BookStack.Navigator>
+  )
+}
+function MyBookStack({ userData }) {
+  return (
+    <BookStack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="BooksOwned">
+        {props => <BooksOwnedScreen {...props} userData={userData} />}
+      </Stack.Screen>
+      <Stack.Screen name="AddBook">
+        {props => <AddBookScreen {...props} userData={userData} />}
+      </Stack.Screen>
+    </BookStack.Navigator>
+  )
+}
+
+function MyTabs({ userData }) {
+  return (
+    <Tab.Navigator screenOptions={{headerShown: true, tabBarShowLabel: false}}>
+      <Tab.Screen name="BookSearch" >
+        {props => <MySearchStack {...props} userData={userData} />}
+      </Tab.Screen>
+      <Tab.Screen name="MyBookStack" >
+        {props => <MyBookStack {...props} userData={userData} />}
+      </Tab.Screen>
+      <Tab.Screen name="Profile" >
+        {props => <ProfileScreen {...props} userData={userData} />}
+      </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
 
@@ -78,11 +130,11 @@ export default function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         { user ? (
           <>
-            <Stack.Screen name="Home">
-              {props => <HomeScreen {...props} extraData={user} />}
+            <Stack.Screen name="Book Beans">
+              {props => <MyTabs {...props} userData={user} />}
             </Stack.Screen>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Registration" component={RegistrationScreen} />
