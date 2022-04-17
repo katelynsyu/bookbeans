@@ -1,6 +1,6 @@
 import { React, useState }from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet } from 'react-native';
-
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ScreenContainer from '../../components/ScreenContainer.js';
 import ScreenTitle from '../../components/ScreenTitle.js';
 import { Feather } from '@expo/vector-icons';
@@ -103,6 +103,7 @@ function BookInfoScreen({ navigation, userData, ...props }) {
 
   return (
     <ScreenContainer>
+      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
       <View
         style={{
           flexDirection: "row",
@@ -134,43 +135,43 @@ function BookInfoScreen({ navigation, userData, ...props }) {
           source={require('../../../assets/book.png')}
         />
       </View>
-      {/* Title Text Input */}
-      <View
-        style={styles.textInputWrapper}
-      >
-        <Text
-          style={styles.inputHeader}
+        {/* Title Text Input */}
+        <View
+          style={styles.textInputWrapper}
         >
-          Title
-        </Text>
-        <TextInput 
-          style={styles.inputText}
-          allowFontScaling
-          placeholder="enter book title"
-          onChangeText={text => setTitleText(text)}
-          value={titleText}
-          scrollEnabled
-        />
-      </View>
-      
-      {/* Author Text Input */}
-      <View
-        style={styles.textInputWrapper}
-      >
-        <Text
-          style={styles.inputHeader}
+          <Text
+            style={styles.inputHeader}
+          >
+            Title
+          </Text>
+          <TextInput 
+            style={styles.inputText}
+            allowFontScaling
+            placeholder="enter book title"
+            onChangeText={text => setTitleText(text)}
+            value={titleText}
+            scrollEnabled
+          />
+        </View>
+        
+        {/* Author Text Input */}
+        <View
+          style={styles.textInputWrapper}
         >
-          Author
-        </Text>
-        <TextInput
-          style={styles.inputText}
-          allowFontScaling
-          placeholder="add author"
-          onChangeText={text => setAuthorText(text)}
-          value={authorText}
-          scrollEnabled
-        />
-      </View>
+          <Text
+            style={styles.inputHeader}
+          >
+            Author
+          </Text>
+          <TextInput
+            style={styles.inputText}
+            allowFontScaling
+            placeholder="add author"
+            onChangeText={text => setAuthorText(text)}
+            value={authorText}
+            scrollEnabled
+          />
+        </View>
 
       <View
         style={styles.textInputWrapper}
@@ -205,6 +206,7 @@ function BookInfoScreen({ navigation, userData, ...props }) {
         </View>
         
       </View>
+      </KeyboardAwareScrollView>
     </ScreenContainer>
   );
 }
