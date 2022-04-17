@@ -38,6 +38,7 @@ function BookSearchScreen ({navigation, userData, ...props}) {
           </View>
           <FlatList
             data={books}
+            showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={ItemDivider}
             keyExtractor={(item) => item.bid}
             renderItem={({item}) => { 
