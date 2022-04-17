@@ -49,6 +49,7 @@ export default function RegistrationScreen({navigation}) {
 
     return (
             <SafeAreaView style={styles.container}>
+                <Text style={styles.title}>Sign up</Text>
                 <KeyboardAwareScrollView
                     style={{ flex: 1, width: '100%' }}
                     keyboardShouldPersistTaps="always">

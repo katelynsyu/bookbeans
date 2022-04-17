@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ScreenTitle from '../../components/ScreenTitle';
 
 export default function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
@@ -43,6 +44,7 @@ export default function LoginScreen({navigation}) {
     return (
         
             <SafeAreaView style={styles.container}>
+                <Text style={styles.title}>Login</Text>
                 <KeyboardAwareScrollView
                     style={{ flex: 1, width: '100%' }}
                     keyboardShouldPersistTaps="never">
