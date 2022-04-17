@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function BookInfoScreen({navigation}) {
+function BookInfoScreen({ navigation, userData, ...props }) {
   const [ titleText, setTitleText ] = useState('');
   const [ authorText, setAuthorText ] = useState('');
   const [ condition, setCondition ] = useState('');
@@ -68,7 +68,7 @@ function BookInfoScreen({navigation}) {
         bname: titleText,
         condition,
         lid,
-        uid: 1
+        uid: userData.uid
       }
 
       newListing.set(listData)
@@ -88,7 +88,7 @@ function BookInfoScreen({navigation}) {
         bname: titleText,
         condition,
         lid,
-        uid: 1
+        uid: userData.uid
       }
 
       newListing.set(listData)
@@ -98,6 +98,7 @@ function BookInfoScreen({navigation}) {
         listings: firebase.firestore.FieldValue.arrayUnion(lid)
       })
     }
+    navigation.goBack()
   }
 
   return (
