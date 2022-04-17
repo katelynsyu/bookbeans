@@ -34,7 +34,7 @@ function BookInfoScreen({navigation, userData, ...props }) {
                 <Text style={styles.text}>{bookData.author}</Text>
                 <Image style={styles.image} source={require("../../../assets/book.png")}/>
             </View>
-            <BookOwnerProfileList listings={bookData.listings} />
+            {bookData.listings ? <BookOwnerProfileList listings={bookData.listings} /> : null}
         </ScreenContainer>
     );
 };
