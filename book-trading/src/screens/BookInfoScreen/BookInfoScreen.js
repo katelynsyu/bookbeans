@@ -6,12 +6,12 @@ import ScreenTitle from '../../components/ScreenTitle.js';
 import BookOwnerProfileList from '../../components/BookOwnerProfileList.js';
 import { AntDesign } from '@expo/vector-icons';
 
-function BookInfoScreen() {
+function BookInfoScreen({navigation, userData, ...props }) {
     return(
         <SafeAreaView>
             <ScreenContainer> 
                 <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => navigation.goBack()}
                 >
                     <AntDesign name="arrowleft" size={24} color="black" />
                 </TouchableOpacity>

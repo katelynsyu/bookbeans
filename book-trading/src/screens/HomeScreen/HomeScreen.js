@@ -9,7 +9,7 @@ export default function HomeScreen(props) {
     const [entities, setEntities] = useState([])
 
     const entityRef = firebase.firestore().collection('entities')
-    const userID = props.extraData.id
+    const userID = props.userData.id
     const signOut = () => {
         firebase.auth().signOut().then(() => {
             console.log("User succesfully signed out")
@@ -19,10 +19,11 @@ export default function HomeScreen(props) {
         })
     }
     return (
+        
         <View style={styles.container}>
-            <Text>Logged in as {props.extraData.fullName}</Text>
-            <Text>Email: {props.extraData.email}</Text>
-            <Text>Unique ID: {props.extraData.uid}</Text>
+            <Text>Logged in as {props.userData.fullName}</Text>
+            <Text>Email: {props.userData.email}</Text>
+            <Text>Unique ID: {props.userData.uid}</Text>
             <TouchableOpacity style={styles.button} onPress={signOut}>
                 <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>

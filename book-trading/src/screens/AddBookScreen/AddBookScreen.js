@@ -5,6 +5,7 @@ import ScreenContainer from '../../components/ScreenContainer.js';
 import ScreenTitle from '../../components/ScreenTitle.js';
 import { Feather } from '@expo/vector-icons';
 import { firebase } from '../../firebase/config'
+import { AntDesign } from '@expo/vector-icons'; 
 
 const styles = StyleSheet.create({
   textInputWrapper: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function BookInfoScreen() {
+function BookInfoScreen({navigation}) {
   const [ titleText, setTitleText ] = useState('');
   const [ authorText, setAuthorText ] = useState('');
   const [ condition, setCondition ] = useState('');
@@ -107,6 +108,7 @@ function BookInfoScreen() {
           justifyContent: "space-between"
         }}
       >
+        <TouchableOpacity onPress={() => navigation.goBack()} ><AntDesign name="back" size={24} color="black" /></TouchableOpacity>
         <ScreenTitle>Add a Book</ScreenTitle>
         <TouchableOpacity
           onPress={addToDatabase}
