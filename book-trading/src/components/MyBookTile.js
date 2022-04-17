@@ -2,8 +2,32 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons';
+import { firebase } from "../firebase/config";
 
 function MyBookTile (props){
+    const deleteListing = async () => {
+        console.log("Deleting Books")
+        const lid = props.lid;
+        const bid = props.bid;
+        const uid = props.uid;
+        let db = firebase.firestore();
+        db.collection("listings").doc(lid).delete().then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+        
+        let userDocRef = db.collection("users").doc(uid);
+        userDocRef.update({
+            listings: firebase.firestore.FieldValue.arrayRemove(lid)
+        })
+
+        let bookDocRef = db.collection("books").doc(bid);
+        bookDocRef.update({
+            listings: firebase.firestore.FieldValue.arrayRemove(lid)
+        })
+
+    }
     return (
         <View style={styles.bookTileContainer}> 
         <View style={styles.bookInfoContainer}>
@@ -16,7 +40,7 @@ function MyBookTile (props){
         </View>
         <TouchableOpacity
             style={styles.deleteButton}
-            onPress={() => {console.log("My Books: Delete Book!")}}
+            onPress={deleteListing}
         >
             <Feather name="trash-2" size={24} color="#c5c5c5" />
         </TouchableOpacity>
