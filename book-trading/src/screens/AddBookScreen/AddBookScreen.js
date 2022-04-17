@@ -171,14 +171,12 @@ function BookInfoScreen({ navigation, userData, ...props }) {
         >
           All fields must be filled
         </Text> : 
-        null}
+        null
+      }
       {/* Title Text Input */}
       <View
         style={styles.textInputWrapper}
       >
-        <Text
-          style={styles.inputHeader}
-        >
           <Text
             style={styles.inputHeader}
           >
@@ -193,7 +191,6 @@ function BookInfoScreen({ navigation, userData, ...props }) {
             scrollEnabled
           />
         </View>
-        
         {/* Author Text Input */}
         <View
           style={styles.textInputWrapper}
