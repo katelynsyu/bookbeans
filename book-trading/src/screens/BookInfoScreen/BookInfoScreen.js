@@ -1,5 +1,5 @@
-import { React, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet } from 'react-native';
+import { React } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenContainer from '../../components/ScreenContainer.js';
 import ScreenTitle from '../../components/ScreenTitle.js';
