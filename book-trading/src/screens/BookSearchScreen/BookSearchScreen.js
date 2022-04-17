@@ -76,6 +76,9 @@ function BookSearchScreen ({navigation, userData, ...props}) {
             ItemSeparatorComponent={ItemDivider}
             keyExtractor={(item) => item.bid}
             renderItem={({item, index}) => { 
+              if (item.listings.length === 0) {
+                return null;
+              }
               return <BookTile 
                 title={item.bname}
                 author={item.author}
