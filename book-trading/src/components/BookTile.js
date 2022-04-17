@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native";
 function BookTile (props){
     return (
         <TouchableOpacity
-            onPress={() => {}}
+            onPress={props.callback}
         >
             <View style={styles.bookTileContainer}>
                 <Image style={styles.image} source={require('../../assets/book.png')}/>

@@ -1,45 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BookTile from "../../components/BookTile.js";
 import ScreenContainer from '../../components/ScreenContainer.js';
 import ScreenTitle from '../../components/ScreenTitle.js';
 import { View, FlatList, TouchableOpacity } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import ItemDivider from "../../components/ItemDivider.js";
+import { firebase } from "../../firebase/config";
 
-const books = [
-  {
-    title: "Atomic Habits",
-    author: "James Clear",
-    available: "2",
-  }, 
-  {
-    title: "Why We Sleep",
-    author: "Matthew Walker",
-    available: "3",
-  }, 
-  {
-    title: "Harry Potter and the Prisoner of Azkaban",
-    author: "J.K. Rowling",
-    available: "5",
-  }, 
-  {
-    title: "Nothing to Envy: Ordinary Lives in North Korea",
-    author: "Barbara Demick",
-    available: "1",
-  },
-  {
-    title: "Stinky Poopy: A Memoir",
-    author: "Eugene Lo",
-    available: "1",
-  },
-  {
-    title: "Testing: A Memoir",
-    author: "ahhhh",
-    available: "1",
-  }
-];
 
-function BookSearchScreen () {
+function BookSearchScreen ({navigation, userData, ...props}) {
+  let [ books, setBooks ] = useState([])
+  
+  useEffect(async () => {
+    const db = firebase.firestore()
+    const querySnapshot = await db.collection('books').get();
+    const tempBooks = []
+    querySnapshot.forEach(doc => {
+      tempBooks.push(doc.data());
+    });
+    setBooks(tempBooks);
+  }, []);
+
     return (
         <ScreenContainer>
           <View
@@ -58,12 +39,17 @@ function BookSearchScreen () {
           <FlatList
             data={books}
             ItemSeparatorComponent={ItemDivider}
-            keyExtractor={(item) => `${item.title}-${item.author}`}
+            keyExtractor={(item) => item.bid}
             renderItem={({item}) => { 
               return <BookTile 
-                title={item.title}
+                title={item.bname}
                 author={item.author}
-                available={item.available}
+                available={item.listings.length}
+                listings={item.listings}
+                bid={item.bid}
+                callback={() => {
+                  navigation.navigate("BookInfo", {bid: item.bid});
+                }}
             />}}
           />
         </ScreenContainer>

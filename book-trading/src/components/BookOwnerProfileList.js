@@ -2,7 +2,7 @@ import React from "react";
 import BookOwnerProfile from "./BookOwnerProfile.js"
 import { View } from "react-native";
 
-function BookOwnerProfileList() {
+function BookOwnerProfileList({ listings }) {
     return (
         <View>
             <BookOwnerProfile 
