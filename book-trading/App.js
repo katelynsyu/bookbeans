@@ -29,7 +29,7 @@ import { OpenSans_300Light,
 
 import BookSearchScreen from './src/screens/BookSearchScreen/BookSearchScreen.js';
 import BookInfoScreen from './src/screens/BookInfoScreen/BookInfoScreen';
-import BooksOwnedScreen from './src/screens/BooksOwnedScreen/BooksOwnedScreen';
+import MyBooksScreen from './src/screens/MyBooksScreen/MyBooksScreen';
 import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
 import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 const Stack = createStackNavigator();
@@ -55,7 +55,7 @@ function MyBookStack({ userData }) {
   return (
     <BookStack.Navigator screenOptions={{headerShown: false}}>
       <BookStack.Screen name="BooksOwned">
-        {props => <BooksOwnedScreen {...props} userData={userData} />}
+        {props => <MyBooksScreen {...props} userData={userData} />}
       </BookStack.Screen>
       <BookStack.Screen name="AddBook">
         {props => <AddBookScreen {...props} userData={userData} />}
