@@ -35,6 +35,17 @@ function BookSearchScreen ({navigation, userData, ...props}) {
   useEffect(async () => {
     fetchBooks();
   }, []);
+  
+  const getBook = (i) => {
+    switch(i % 3) {
+      case 0:
+        return require("../../../assets/t0-book.png")
+      case 1:
+        return require("../../../assets/t1-book.png")
+      case 2:
+        return require("../../../assets/t2-book.png")
+    }
+  }
 
     return (
         <ScreenContainer>
@@ -64,7 +75,7 @@ function BookSearchScreen ({navigation, userData, ...props}) {
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={ItemDivider}
             keyExtractor={(item) => item.bid}
-            renderItem={({item}) => { 
+            renderItem={({item, index}) => { 
               return <BookTile 
                 title={item.bname}
                 author={item.author}
@@ -74,6 +85,7 @@ function BookSearchScreen ({navigation, userData, ...props}) {
                 callback={() => {
                   navigation.navigate("BookInfo", {bid: item.bid});
                 }}
+                imgSrc={getBook(index)}
             />}}
           />
         </ScreenContainer>

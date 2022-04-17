@@ -33,6 +33,10 @@ import BookInfoScreen from './src/screens/BookInfoScreen/BookInfoScreen';
 import MyBooksScreen from './src/screens/MyBooksScreen/MyBooksScreen';
 import AddBookScreen from './src/screens/AddBookScreen/AddBookScreen.js';
 import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen.js';
+
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
 const Stack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();

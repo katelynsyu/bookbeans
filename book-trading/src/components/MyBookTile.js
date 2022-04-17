@@ -31,7 +31,7 @@ function MyBookTile (props){
     return (
         <View style={styles.bookTileContainer}> 
         <View style={styles.bookInfoContainer}>
-            <Image style={styles.image} source={require('../../assets/book.png')}/>
+            <Image style={styles.image} source={require(`../../assets/t0-book.png`)}/>
             <View style={styles.infoContainer}>
                 <Text style = {styles.titleText}>{props.title}</Text>
                 <Text style = {styles.authorText}>{props.author}</Text>
