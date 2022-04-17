@@ -143,7 +143,7 @@ function BookInfoScreen({ navigation, userData, ...props }) {
             height: 200,
             resizeMode: 'center'
           }}
-          source={require('../../../assets/book.png')}
+          source={require('../../../assets/t0-book.png')}
         />
       </View>
         {/* Title Text Input */}

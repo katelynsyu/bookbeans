@@ -9,7 +9,7 @@ function BookTile (props){
             onPress={props.callback}
         >
             <View style={styles.bookTileContainer}>
-                <Image style={styles.image} source={require('../../assets/book.png')}/>
+                <Image style={styles.image} source={props.imgSrc}/>
                 <View style={styles.infoContainer}>
                 <Text style={styles.titleText}
                 >{props.title}</Text>
