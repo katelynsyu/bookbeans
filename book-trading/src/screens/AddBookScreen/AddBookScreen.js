@@ -39,6 +39,7 @@ function BookInfoScreen({ navigation, userData, ...props }) {
     let books = []
     let bid = 0
     let lid = 0
+    let uid = userData.uid
     let querySnapshot= await db.collection("books")
                               .where("bname", "==", titleText)
                               .get()
@@ -68,11 +69,16 @@ function BookInfoScreen({ navigation, userData, ...props }) {
         bname: titleText,
         condition,
         lid,
-        uid: userData.uid
+        uid
       }
 
       newListing.set(listData)
       newBook.set(bookData)
+
+      let user = db.collection("users").doc(uid)
+      user.update({
+        listings: firebase.firestore.FieldValue.arrayUnion(lid)
+      })
     }
     else
     {
@@ -88,13 +94,18 @@ function BookInfoScreen({ navigation, userData, ...props }) {
         bname: titleText,
         condition,
         lid,
-        uid: userData.uid
+        uid
       }
 
       newListing.set(listData)
 
       let book = db.collection("books").doc(bid)
       book.update({
+        listings: firebase.firestore.FieldValue.arrayUnion(lid)
+      })
+
+      let user = db.collection("users").doc(uid)
+      user.update({
         listings: firebase.firestore.FieldValue.arrayUnion(lid)
       })
     }

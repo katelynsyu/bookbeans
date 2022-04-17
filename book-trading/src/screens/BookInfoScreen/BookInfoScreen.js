@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenContainer from '../../components/ScreenContainer.js';
@@ -36,7 +36,7 @@ function BookInfoScreen({navigation, userData, ...props }) {
                     <Text style={styles.text}>{bookData.author}</Text>
                     <Image style={styles.image} source={require("../../../assets/book.png")}/>
                 </View>
-                <BookOwnerProfileList listings={bookData.listings} />
+                {bookData.listings ? <BookOwnerProfileList listings={bookData.listings} /> : null}
             </ScreenContainer>
         </SafeAreaView>
     );
